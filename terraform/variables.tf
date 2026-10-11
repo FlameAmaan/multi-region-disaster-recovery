@@ -19,5 +19,5 @@ variable "vm_size_primary" {
 variable "vm_size_secondary" {
   description = "VM size for the secondary web server"
   type        = string
-  default     = "Standard_B2s_v2"
+  default     = "Standard_B2ats_v2"
 }
