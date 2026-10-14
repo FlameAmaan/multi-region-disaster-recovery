@@ -43,3 +43,10 @@ terraform.rc
 # Uncomment the line below if you want to ignore planout files.
 # planout
 sku-list.json
+# Python backup files
+*.bak
+
+# Python cache files
+__pycache__/
+**/__pycache__/
+*.py[cod]

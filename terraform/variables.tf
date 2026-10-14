@@ -21,3 +21,8 @@ variable "vm_size_secondary" {
   type        = string
   default     = "Standard_B2ats_v2"
 }
+variable "ssh_public_key" {
+  description = "SSH public key used to access the Linux VMs"
+  type        = string
+  default     = ""
+}

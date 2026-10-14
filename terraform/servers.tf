@@ -103,7 +103,7 @@ resource "azurerm_linux_virtual_machine" "primary" {
 
   admin_ssh_key {
     username   = "azureuser"
-    public_key = file(pathexpand("~/.ssh/id_rsa.pub"))
+    public_key = var.ssh_public_key != "" ? var.ssh_public_key : file(pathexpand("~/.ssh/id_rsa.pub"))
   }
 
   os_disk {
@@ -148,7 +148,7 @@ resource "azurerm_linux_virtual_machine" "secondary" {
 
   admin_ssh_key {
     username   = "azureuser"
-    public_key = file(pathexpand("~/.ssh/id_rsa.pub"))
+    public_key = var.ssh_public_key != "" ? var.ssh_public_key : file(pathexpand("~/.ssh/id_rsa.pub"))
   }
 
   os_disk {
