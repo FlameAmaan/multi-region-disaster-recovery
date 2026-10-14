@@ -1,0 +1,23 @@
+{
+  "project": "multi-region-disaster-recovery",
+  "test_id": "c34a7b0d-f7b2-4ec6-9b0e-afa19e779808",
+  "test_type": "failover_test",
+  "generated_at": "2026-10-13T01:59:50.223111+00:00",
+  "outage_started_at": "2026-10-13T01:53:24.393682+00:00",
+  "primary_deallocation_requested": true,
+  "recovered": true,
+  "rto_seconds": 127.39,
+  "recovery_error": null,
+  "primary_restoration": {
+    "restored": true,
+    "elapsed_seconds": 0.13,
+    "observed_at": "2026-10-13T01:59:50.221918+00:00",
+    "error": null
+  },
+  "summary": {
+    "total_endpoints": 3,
+    "healthy_endpoints": 0,
+    "unhealthy_endpoints": 3,
+    "overall_status": "RECOVERED"
+  }
+}
