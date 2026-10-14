@@ -62,7 +62,7 @@ jobs:
 
       - name: Validate Terraform
         run: terraform validate
-  
+
   azure-function-checks:
     name: Azure Function Python 3.14 Checks
     runs-on: ubuntu-latest
