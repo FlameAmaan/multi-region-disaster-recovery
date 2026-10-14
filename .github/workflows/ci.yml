@@ -90,3 +90,56 @@ jobs:
 
       - name: Check dependency consistency
         run: python -m pip check
+  
+  ci-report:
+    name: Generate CI Report
+    runs-on: ubuntu-latest
+    needs:
+      - python-checks
+      - terraform-checks
+      - azure-function-checks
+    if: always()
+    permissions:
+      contents: read
+    steps:
+      - name: Generate validation report
+        shell: bash
+        env:
+          PYTHON_RESULT: ${{ needs.python-checks.result }}
+          TERRAFORM_RESULT: ${{ needs.terraform-checks.result }}
+          FUNCTION_RESULT: ${{ needs.azure-function-checks.result }}
+          COMMIT_SHA: ${{ github.sha }}
+          BRANCH_NAME: ${{ github.ref_name }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          mkdir -p reports
+          {
+            echo "# CI Validation Report"
+            echo
+            echo "- Commit: \`$COMMIT_SHA\`"
+            echo "- Branch: \`$BRANCH_NAME\`"
+            echo "- Trigger: \`$EVENT_NAME\`"
+            echo "- Generated (UTC): \`$(date -u +'%Y-%m-%d %H:%M:%S')\`"
+            echo
+            echo "| Check | Result |"
+            echo "|---|---|"
+            echo "| Python 3.14 | $PYTHON_RESULT |"
+            echo "| Terraform validation | $TERRAFORM_RESULT |"
+            echo "| Azure Function | $FUNCTION_RESULT |"
+            echo
+            if [[ "$PYTHON_RESULT" == "success" && "$TERRAFORM_RESULT" == "success" && "$FUNCTION_RESULT" == "success" ]]; then
+              echo "**Overall result: PASS**"
+            else
+              echo "**Overall result: CHECK FAILED JOBS**"
+            fi
+            echo
+            echo "> This report covers CI validation only. It does not represent a live Azure infrastructure plan or deployment."
+          } > reports/ci-validation-report.md
+
+      - name: Upload validation report
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-validation-report
+          path: reports/ci-validation-report.md
+          if-no-files-found: error
+          retention-days: 30
