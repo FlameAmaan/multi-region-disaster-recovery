@@ -50,3 +50,8 @@ __queuestorage__
 __tablestorage__
 __azurite_db*__.json
 AzuriteConfig
+# Python backup files
+*.bak
+
+# Python cache directories (including nested project folders)
+**/__pycache__/
