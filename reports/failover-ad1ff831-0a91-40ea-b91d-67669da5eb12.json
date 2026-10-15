@@ -1,0 +1,32 @@
+{
+  "project": "multi-region-disaster-recovery",
+  "test_id": "ad1ff831-0a91-40ea-b91d-67669da5eb12",
+  "test_type": "failover_test",
+  "generated_at": "2026-10-15T13:13:45.615064+00:00",
+  "outage_started_at": "2026-10-15T13:07:02.675825+00:00",
+  "primary_deallocation_requested": true,
+  "recovered": true,
+  "rto_seconds": 139.54,
+  "recovery_error": null,
+  "primary_restoration": {
+    "restored": true,
+    "elapsed_seconds": 0.08,
+    "observed_at": "2026-10-15T13:13:45.240395+00:00",
+    "error": null
+  },
+  "endpoint_health": {
+    "primary": true,
+    "secondary": true,
+    "traffic_manager": true
+  },
+  "summary": {
+    "total_endpoints": 3,
+    "healthy_endpoints": 3,
+    "unhealthy_endpoints": 0,
+    "overall_status": "RECOVERED"
+  },
+  "azure_upload": {
+    "uploaded": true,
+    "error": null
+  }
+}

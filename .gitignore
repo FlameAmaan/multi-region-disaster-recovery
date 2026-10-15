@@ -50,3 +50,16 @@ sku-list.json
 __pycache__/
 **/__pycache__/
 *.py[cod]
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Python environments
+.venv/
+.venv*/
+venv/
+
+# Frontend dependencies and build output
+node_modules/
+dist/
